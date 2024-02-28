@@ -3,7 +3,8 @@ import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useWindowSize } from "./hooks/useWindowSize";
 import { IconLogo } from "./components/Icons";
-import puroHotelInteriorMobile from "./assets/puro_hotel_interior_mobile.webp";
+import puroHotelInteriorMobile from "/public/assets/puro_hotel_interior_mobile.webp";
+import puroHotelsLodzRoomsSuite001 from "/public/assets/puro_hotels_lodz_rooms_suite_001.webp";
 
 function App() {
 	return (
@@ -15,7 +16,7 @@ function App() {
 					<h2 className="uppercase text-4xl lg:text-[96px] lg:leading-[1.05]  md:grid-in-title ">
 						The Puro <br className="hidden lg:inline-block" /> Experience
 					</h2>
-					<img className="grid-in-image w-full h-full" src="src/assets/puro_hotels_lodz_rooms_suite_001.webp" alt="" />
+					<img className="grid-in-image w-full h-full" src={puroHotelsLodzRoomsSuite001} alt="" />
 					<div className="flex flex-col gap-8 md:md:grid-in-text lg:max-w-xl md:mt-4">
 						<p className="font-light">
 							Unique, a little bit quirky, and imbued with a true sense of place. PURO hotels are a refined yet relaxed experience that bring together

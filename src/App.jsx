@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useWindowSize } from "./hooks/useWindowSize";
 import { IconLogo } from "./components/Icons";
+import puroHotelInteriorMobile from "./assets/puro_hotel_interior_mobile.webp";
 
 function App() {
 	return (
@@ -153,7 +154,7 @@ const Hero = () => {
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth <= 767) {
-				setBackgroundImage("src/assets/puro_hotel_interior_mobile.webp");
+				setBackgroundImage(puroHotelInteriorMobile);
 			} else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
 				setBackgroundImage("src/assets/puro_hotel_warsaw_interiors_002.webp");
 			} else {

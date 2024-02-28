@@ -5,6 +5,11 @@ import { useWindowSize } from "./hooks/useWindowSize";
 import { IconLogo } from "./components/Icons";
 import puroHotelInteriorMobile from "/public/assets/puro_hotel_interior_mobile.webp";
 import puroHotelsLodzRoomsSuite001 from "/public/assets/puro_hotels_lodz_rooms_suite_001.webp";
+import puroHotelWarsawRoomsLoreta008 from "/public/assets/puro_hotel_warsaw_rooms_loreta_008.webp";
+import openMenu from "/public/assets/Open menu.svg";
+import chevronDown from "/public/assets/svgexport-1.svg";
+import puroHotelWarsawInteriors002 from "/public/assets/puro_hotel_warsaw_interiors_002.webp";
+import puroHotelWarsawInteriors0021 from "/public/assets/puro_hotel_warsaw_interiors_002 (1).webp";
 
 function App() {
 	return (
@@ -32,7 +37,7 @@ function App() {
 				<section className="bg-black text-white flex flex-col items-center justify-center h-screen">Carossel</section>
 				<section className="py-16 px-4 flex flex-col gap-6 md:grid md:grid-areas-layout md:grid-cols-layout md:grid-rows-layout md:pr-0">
 					<h2 className="uppercase text-4xl lg:text-[96px] lg:leading-[1.05]  md:grid-in-title ">IMPECCABLE TASTE</h2>
-					<img className="grid-in-image w-full h-full" src="src/assets/puro_hotel_warsaw_rooms_loreta_008.webp" alt="" />
+					<img className="grid-in-image w-full h-full" src={puroHotelWarsawRoomsLoreta008} alt="" />
 					<div className="flex flex-col gap-8 md:md:grid-in-text lg:max-w-xl md:mt-4">
 						<p className="font-light">
 							Let your senses run wild at PURO Hotels. Carefully considered to add style and refinement to your stay with us, our restaurants and bars
@@ -105,18 +110,18 @@ const Header = () => {
 					<div className="flex justify-between items-center px-4 ">
 						{/* col 1 */}
 						<div>
-							<img className="max-h-6" src="src\assets\Puro.svg" alt="puro-logo" />
+							<IconLogo className={"max-h-6"} />
 						</div>
 						{/* col 1 */}
 						<div>
-							<img src="src\assets\Open menu.svg" alt="" />
+							<img src={openMenu} alt="" />
 						</div>
 					</div>
 				</div>
 				{/* second row of the header */}
 				<div className="py-2  w-full  border-b border-neutral-500">
 					<div className="text-xs px-4 flex gap-2">
-						<img src="src\assets\svgexport-1.svg" alt="" />
+						<img src={chevronDown} alt="" />
 						<span>Destinations</span>
 					</div>
 				</div>
@@ -151,15 +156,15 @@ const Header = () => {
 };
 
 const Hero = () => {
-	const [backgroundImage, setBackgroundImage] = useState("src/assets/puro_hotel_interior_mobile.webp");
+	const [backgroundImage, setBackgroundImage] = useState(puroHotelInteriorMobile);
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth <= 767) {
 				setBackgroundImage(puroHotelInteriorMobile);
 			} else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-				setBackgroundImage("src/assets/puro_hotel_warsaw_interiors_002.webp");
+				setBackgroundImage(puroHotelWarsawInteriors002);
 			} else {
-				setBackgroundImage("src/assets/puro_hotel_warsaw_interiors_002 (1).webp");
+				setBackgroundImage(puroHotelWarsawInteriors0021);
 			}
 		};
 		handleResize();

@@ -3,6 +3,10 @@ import { Header } from "./components/organisms/Header";
 import { Hero } from "./components/organisms/Hero";
 import puroHotelsLodzRoomsSuite001 from "/public/assets/puro_hotels_lodz_rooms_suite_001.webp";
 import puroHotelWarsawRoomsLoreta008 from "/public/assets/puro_hotel_warsaw_rooms_loreta_008.webp";
+import puroHotelWroclawInterior005 from "/public/assets/puro_hotel_wroclaw_interior_005.webp";
+import { useEffect } from "react";
+import gsap from "gsap";
+import { DiscoverLink } from "./components/molecules/DiscoverLink";
 
 function App() {
 	return (
@@ -20,53 +24,13 @@ function App() {
 							Unique, a little bit quirky, and imbued with a true sense of place. PURO hotels are a refined yet relaxed experience that bring together
 							the culture and creativity of each city to create a stay that’s about more than just sleep.
 						</p>
-						<p className="md:mt-8 text-sm font-semibold">
-							<a href="#" className="after:content-['_—']">
-								Discover our concept
-							</a>
+						<p className="md:mt-8">
+							<DiscoverLink content={"Discover our concept"} />
 						</p>
 					</div>
 				</section>
-				<section className="relative bg-black text-white flex flex-col items-center justify-center h-screen">
-					<div id="gallery" className="absolute w-full h-full overflow-hidden">
-						<ul className="cards">
-							<li>0</li>
-							<li>1</li>
-							<li>2</li>
-							<li>3</li>
-							<li>4</li>
-							<li>5</li>
-							<li>6</li>
-							<li>7</li>
-							<li>8</li>
-							<li>9</li>
-							<li>10</li>
-							<li>11</li>
-							<li>12</li>
-							<li>13</li>
-							<li>14</li>
-							<li>15</li>
-							<li>16</li>
-							<li>17</li>
-							<li>18</li>
-							<li>19</li>
-							<li>20</li>
-							<li>21</li>
-							<li>22</li>
-							<li>23</li>
-							<li>24</li>
-							<li>25</li>
-							<li>26</li>
-							<li>27</li>
-							<li>28</li>
-							<li>29</li>
-							<li>30</li>
-						</ul>
-						<div className="actions">
-							<button className="prev">Prev</button>
-							<button className="next">Next</button>
-						</div>
-					</div>
+				<section className="relative bg-black text-white flex flex-col items-center justify-center">
+					<Carousel />
 				</section>
 				<section className="py-16 px-4 flex flex-col gap-6 md:grid md:grid-areas-layout md:grid-cols-layout md:grid-rows-layout md:pr-0">
 					<h2 className="uppercase text-4xl lg:text-[96px] lg:leading-[1.05]  md:grid-in-title ">IMPECCABLE TASTE</h2>
@@ -76,10 +40,8 @@ function App() {
 							Let your senses run wild at PURO Hotels. Carefully considered to add style and refinement to your stay with us, our restaurants and bars
 							take special care to mix the local and global to bring you a truly cosmopolitan and contemporary dining experience.
 						</p>
-						<p className="md:mt-8 text-sm font-semibold">
-							<a href="#" className="after:content-['_—']">
-								Discover our restaurants
-							</a>
+						<p className="md:mt-8">
+							<DiscoverLink content="Discover our restaurants" />
 						</p>
 					</div>
 				</section>
@@ -87,5 +49,100 @@ function App() {
 		</div>
 	);
 }
+
+const Carousel = () => {
+	useEffect(() => {
+		const cards = gsap.utils.toArray("#cards li");
+		let currentIndex = 0;
+
+		gsap.set(cards, { xPercent: 0, opacity: 1, scale: 1 });
+
+		const nextCard = (index) => {
+			gsap.to(cards, {
+				xPercent: -100 * index,
+				duration: 0.5,
+				ease: "back.in(1.7)",
+			});
+		};
+
+		function handleNextClick() {
+			if (currentIndex < cards.length - 1) {
+				currentIndex++;
+				nextCard(currentIndex);
+			}
+		}
+
+		function handlePrevClick() {
+			if (currentIndex > 0) {
+				currentIndex--;
+				nextCard(currentIndex);
+			}
+		}
+
+		document.querySelector(".next").addEventListener("click", handleNextClick);
+		document.querySelector(".prev").addEventListener("click", handlePrevClick);
+
+		return () => {
+			document.querySelector(".next").removeEventListener("click", handleNextClick);
+			document.querySelector(".prev").removeEventListener("click", handlePrevClick);
+		};
+	}, []);
+
+	return (
+		<div id="gallery" className="gallery">
+			<ul id="cards" className="cards">
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+				<li>
+					<Card />
+				</li>
+			</ul>
+			<div className="actions">
+				<button className="prev">Prev</button>
+				<button className="next">Next</button>
+			</div>
+		</div>
+	);
+};
+
+const Card = () => {
+	return (
+		<div className="w-full h-full">
+			<img className="w-full" src={puroHotelWroclawInterior005} alt="" />
+			<div className="mx-4 pb-6 border-b border-white/30">
+				<p className="mt-12">Poland</p>
+				<h3 className="uppercase text-5xl">Poznań</h3>
+			</div>
+			<div className="mx-4 pb-6 border-b border-white/30">
+				<p className="text-sm text-white/80 font-light mt-6">
+					Centrally located and minutes away from Kraków’s top restaurants, cafes, shops and historic attractions. PURO Kraków Stare Miasto is a
+					design-focused, modern-styled hotel.
+				</p>
+				<div className="mt-4">
+					<DiscoverLink content="Discover more" className={""} />
+				</div>
+			</div>
+		</div>
+	);
+};
 
 export default App;

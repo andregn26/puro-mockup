@@ -1,15 +1,8 @@
 import "./App.css";
-import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { useWindowSize } from "./hooks/useWindowSize";
-import { IconLogo } from "./components/Icons";
-import puroHotelInteriorMobile from "/public/assets/puro_hotel_interior_mobile.webp";
+import { Header } from "./components/organisms/Header";
+import { Hero } from "./components/organisms/Hero";
 import puroHotelsLodzRoomsSuite001 from "/public/assets/puro_hotels_lodz_rooms_suite_001.webp";
 import puroHotelWarsawRoomsLoreta008 from "/public/assets/puro_hotel_warsaw_rooms_loreta_008.webp";
-import openMenu from "/public/assets/Open menu.svg";
-import chevronDown from "/public/assets/svgexport-1.svg";
-import puroHotelWarsawInteriors002 from "/public/assets/puro_hotel_warsaw_interiors_002.webp";
-import puroHotelWarsawInteriors0021 from "/public/assets/puro_hotel_warsaw_interiors_002 (1).webp";
 
 function App() {
 	return (
@@ -34,7 +27,47 @@ function App() {
 						</p>
 					</div>
 				</section>
-				<section className="bg-black text-white flex flex-col items-center justify-center h-screen">Carossel</section>
+				<section className="relative bg-black text-white flex flex-col items-center justify-center h-screen">
+					<div id="gallery" className="absolute w-full h-full overflow-hidden">
+						<ul className="cards">
+							<li>0</li>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+							<li>9</li>
+							<li>10</li>
+							<li>11</li>
+							<li>12</li>
+							<li>13</li>
+							<li>14</li>
+							<li>15</li>
+							<li>16</li>
+							<li>17</li>
+							<li>18</li>
+							<li>19</li>
+							<li>20</li>
+							<li>21</li>
+							<li>22</li>
+							<li>23</li>
+							<li>24</li>
+							<li>25</li>
+							<li>26</li>
+							<li>27</li>
+							<li>28</li>
+							<li>29</li>
+							<li>30</li>
+						</ul>
+						<div className="actions">
+							<button className="prev">Prev</button>
+							<button className="next">Next</button>
+						</div>
+					</div>
+				</section>
 				<section className="py-16 px-4 flex flex-col gap-6 md:grid md:grid-areas-layout md:grid-cols-layout md:grid-rows-layout md:pr-0">
 					<h2 className="uppercase text-4xl lg:text-[96px] lg:leading-[1.05]  md:grid-in-title ">IMPECCABLE TASTE</h2>
 					<img className="grid-in-image w-full h-full" src={puroHotelWarsawRoomsLoreta008} alt="" />
@@ -54,169 +87,5 @@ function App() {
 		</div>
 	);
 }
-
-const Header = () => {
-	const { width } = useWindowSize();
-	// const [headerClasses, setHeaderClasses] = useState("absolute top-0 w-full z-50 px-8 pt-8 pb-10 bg-gradient-to-b from-black/80 text-white");
-	const [isInBeginning, setIsInBeginning] = useState(true);
-	const [animationTriggered, setAnimationTriggered] = useState(false);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const scrollTop = window.scrollY;
-			const initialHeight = window.innerHeight;
-
-			if (scrollTop >= initialHeight && !animationTriggered) {
-				// User scrolled past the initial height and animation hasn't been triggered yet
-				setIsInBeginning(false);
-				animateHeaderOnScroll();
-				setAnimationTriggered(true);
-			} else if (scrollTop < initialHeight && animationTriggered) {
-				// User scrolled back to the initial height
-				setIsInBeginning(true);
-				setAnimationTriggered(false);
-			}
-		};
-
-		window.addEventListener("scroll", handleScroll);
-
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, [animationTriggered]);
-
-	const animateHeaderOnScroll = () => {
-		const header = document.getElementById("animatedHeader");
-
-		gsap.fromTo(
-			header,
-			{
-				opacity: 0,
-				y: -100,
-			},
-			{
-				opacity: 1,
-				y: 0,
-				duration: 1,
-				ease: "power3.out",
-			}
-		);
-	};
-	if (width < 1024) {
-		return (
-			<header className="fixed top-0 w-full bg-background z-50">
-				{/* First row of the header */}
-				<div className="py-4 border-b border-neutral-500">
-					<div className="flex justify-between items-center px-4 ">
-						{/* col 1 */}
-						<div>
-							<IconLogo className={"max-h-6"} />
-						</div>
-						{/* col 1 */}
-						<div>
-							<img src={openMenu} alt="" />
-						</div>
-					</div>
-				</div>
-				{/* second row of the header */}
-				<div className="py-2  w-full  border-b border-neutral-500">
-					<div className="text-xs px-4 flex gap-2">
-						<img src={chevronDown} alt="" />
-						<span>Destinations</span>
-					</div>
-				</div>
-			</header>
-		);
-	} else {
-		return (
-			<header
-				id="animatedHeader"
-				className={`${
-					isInBeginning
-						? "absolute top-0 w-full z-50 px-8 pt-8 pb-10 bg-gradient-to-b from-black/80 text-white"
-						: "fixed top-0 w-full z-50 px-8 py-4 bg-background text-black"
-				}`}>
-				<div className="flex justify-between items-center">
-					<IconLogo className={"max-h-6"} fill={isInBeginning ? "#fff" : "#000"} />
-
-					<div className="flex gap-4 w-full items-center justify-end">
-						<ul className="flex gap-3  text-sm">
-							<li>Locations</li>
-							<li>Eat & Drink</li>
-							<li>Brand Philosophy</li>
-							<li>Spaces</li>
-							<li>Shop</li>
-						</ul>
-						<ButtonWithHoverAnimation btnText={"Book now"} className={"max-w-24"} />
-					</div>
-				</div>
-			</header>
-		);
-	}
-};
-
-const Hero = () => {
-	const [backgroundImage, setBackgroundImage] = useState(puroHotelInteriorMobile);
-	useEffect(() => {
-		const handleResize = () => {
-			if (window.innerWidth <= 767) {
-				setBackgroundImage(puroHotelInteriorMobile);
-			} else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-				setBackgroundImage(puroHotelWarsawInteriors002);
-			} else {
-				setBackgroundImage(puroHotelWarsawInteriors0021);
-			}
-		};
-		handleResize();
-		window.addEventListener("resize", handleResize);
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
-
-	return (
-		<section
-			className="relative flex items-center justify-center h-screen m-auto bg-fixed bg-center bg-cover"
-			style={{ backgroundImage: `url("${backgroundImage}")` }}>
-			<div className="absolute top-0 left-0 w-full h-full bg-black/40 flex flex-col justify-center items-center text-white text-center px-8">
-				<h1 className="text-5xl xl:text-6xl font-light uppercase">
-					A new way <br /> to stay
-				</h1>
-				<p className="mt-6 text-sm max-w-md">
-					Designed to be an experience. PURO hotels are made to inspire and entertain through sophisticated design and exceptional service.
-				</p>
-				<ButtonWithHoverAnimation btnText={"Discover our destinations"} className={"max-w-64 mt-8"} />
-			</div>
-		</section>
-	);
-};
-
-const ButtonWithHoverAnimation = ({ btnText, className }) => {
-	const buttonRef = useRef(null);
-
-	useEffect(() => {
-		const button = buttonRef.current;
-
-		const hoverAnimation = gsap.to(button, {
-			scale: 1.05,
-			duration: 0.3,
-			ease: "power2.in",
-			paused: true,
-		});
-		button.addEventListener("mouseenter", () => hoverAnimation.play());
-		button.addEventListener("mouseleave", () => hoverAnimation.reverse());
-
-		return () => {
-			button.removeEventListener("mouseenter", () => hoverAnimation.play());
-			button.removeEventListener("mouseleave", () => hoverAnimation.reverse());
-		};
-	}, []);
-
-	return (
-		<button ref={buttonRef} className={`${className} bg-black px-2 py-4 w-full text-white  text-sm`}>
-			{btnText}
-		</button>
-	);
-};
 
 export default App;

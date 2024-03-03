@@ -1,4 +1,10 @@
+import PropTypes from "prop-types";
+
 export function IconLogo({ fill = "#000", className }) {
+	IconLogo.propTypes = {
+		fill: PropTypes.string,
+		className: PropTypes.string,
+	};
 	return (
 		<svg
 			className={`${className}`}
@@ -23,6 +29,42 @@ export function IconLogo({ fill = "#000", className }) {
 					</g>
 				</g>
 			</g>
+		</svg>
+	);
+}
+
+export function IconOpenMenu({ stroke = "#000", className }) {
+	IconOpenMenu.propTypes = {
+		stroke: PropTypes.string,
+		className: PropTypes.string,
+	};
+	return (
+		<svg className={`${className}`} xmlns="http://www.w3.org/2000/svg" width="32" height="14" viewBox="0 0 32 14">
+			<path fill="none" stroke={stroke} strokeLinecap="square" strokeWidth="2" d="M1.882 1.5h28.236m-28.236 11h28.236"></path>
+		</svg>
+	);
+}
+
+export function IconCloseMenu({ stroke = "#000", className }) {
+	IconCloseMenu.propTypes = {
+		stroke: PropTypes.string,
+		className: PropTypes.string,
+	};
+	return (
+		<svg className={`${className}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+			<path fill="none" stroke={stroke} strokeLinecap="square" strokeWidth="2" d="M1.977 1.977l19.966 19.966m-19.966 0L21.943 1.977"></path>
+		</svg>
+	);
+}
+
+export function IconChevron({ stroke = "#000", className }) {
+	IconChevron.propTypes = {
+		stroke: PropTypes.string,
+		className: PropTypes.string,
+	};
+	return (
+		<svg className={`${className}`} xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6">
+			<path fill="none" stroke={stroke} d="M1 1l4.027 4.027L9.054 1"></path>
 		</svg>
 	);
 }

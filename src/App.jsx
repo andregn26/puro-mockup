@@ -1,5 +1,5 @@
 import "./App.css";
-import { Header } from "./components/organisms/Header";
+import { Header } from "./components/Header/Header";
 import { Hero } from "./components/organisms/Hero";
 import puroHotelsLodzRoomsSuite001 from "/public/assets/puro_hotels_lodz_rooms_suite_001.webp";
 import puroHotelWarsawRoomsLoreta008 from "/public/assets/puro_hotel_warsaw_rooms_loreta_008.webp";
